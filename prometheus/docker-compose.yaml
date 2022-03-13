@@ -1,0 +1,13 @@
+---
+version: "3.9"
+services:
+  prom:
+    image: "prom/prometheus"
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./config:/etc/prometheus"
+      - "tsdb_persistent:/prometheus"
+volumes:
+  tsdb_persistent:
+...

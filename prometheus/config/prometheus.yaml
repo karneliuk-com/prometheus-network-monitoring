@@ -1,0 +1,47 @@
+---
+global:
+  scrape_interval: 5m
+  scrape_timeout: 2m
+
+scrape_configs:
+# iperf3 tests
+  - job_name: 'iperf3-probe-1'
+    metrics_path: /probe
+    static_configs:
+      - targets:
+        - 192.168.51.73
+    params:
+      port: ['5201']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.51.72:9579
+  - job_name: 'iperf3-probe-2'
+    metrics_path: /probe
+    static_configs:
+      - targets:
+        - 192.168.51.72
+    params:
+      port: ['5201']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.51.73:9579
+# speedtest tests
+  - job_name: 'speedtest-probe-1'
+    metrics_path: /probe
+    static_configs:
+    - targets:
+      - 192.168.51.72:9516
+  - job_name: 'speedtest-probe-2'
+    metrics_path: /probe
+    static_configs:
+    - targets:
+      - 192.168.51.73:9516
+...

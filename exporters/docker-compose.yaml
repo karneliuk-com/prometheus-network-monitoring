@@ -1,0 +1,18 @@
+---
+version: "3.9"
+services:
+  iper3_querier_exporter:
+    image: "edgard/iperf3-exporter:latest"
+    ports:
+      - "9579:9579"
+  iperf3_responder:
+    image: "networkstatic/iperf3"
+    ports:
+      - "5201:5201"
+    command:
+      - "-s"
+  speedtest:
+    image: "jraviles/prometheus_speedtest:latest"
+    ports:
+      - "9516:9516"
+...
