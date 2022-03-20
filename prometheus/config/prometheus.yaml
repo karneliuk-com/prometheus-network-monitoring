@@ -44,4 +44,188 @@ scrape_configs:
     static_configs:
     - targets:
       - 192.168.51.73:9516
+# blackbox tests
+  - job_name: 'blackbox-probe-http-1'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - https://karneliuk.com
+        - https://www.openstack.org
+        - https://github.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.51.72:9115
+  - job_name: 'blackbox-probe-http-2'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - https://karneliuk.com
+        - https://www.openstack.org
+        - https://github.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.52.72:9115
+  - job_name: 'blackbox-probe-http-2'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - https://karneliuk.com
+        - https://www.openstack.org
+        - https://github.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.53.72:9115
+  - job_name: 'blackbox-probe-icmp-1'
+    metrics_path: /probe
+    params:
+      module: [icmp_test]
+    static_configs:
+      - targets:
+        - karneliuk.com
+        - www.openstack.org
+        - github.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.51.72:9116
+  - job_name: 'blackbox-probe-icmp-2'
+    metrics_path: /probe
+    params:
+      module: [icmp_test]
+    static_configs:
+      - targets:
+        - karneliuk.com
+        - www.openstack.org
+        - github.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.52.72:9116
+  - job_name: 'blackbox-probe-icmp-3'
+    metrics_path: /probe
+    params:
+      module: [icmp_test]
+    static_configs:
+      - targets:
+        - karneliuk.com
+        - www.openstack.org
+        - github.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.53.72:9116
+  - job_name: 'blackbox-probe-dns-1'
+    metrics_path: /probe
+    params:
+      module: [dns_test]
+    static_configs:
+      - targets:
+        - 8.8.8.8
+        - 9.9.9.9
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.51.72:9117
+  - job_name: 'blackbox-probe-dns-2'
+    metrics_path: /probe
+    params:
+      module: [dns_test]
+    static_configs:
+      - targets:
+        - 8.8.8.8
+        - 9.9.9.9
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.52.72:9117
+  - job_name: 'blackbox-probe-dns-3'
+    metrics_path: /probe
+    params:
+      module: [dns_test]
+    static_configs:
+      - targets:
+        - 8.8.8.8
+        - 9.9.9.9
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.53.72:9117
+  - job_name: 'blackbox-probe-http-parser-1'
+    metrics_path: /probe
+    params:
+      module: [http_parsing]
+    static_configs:
+      - targets:
+        - https://karneliuk.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.51.72:9118
+  - job_name: 'blackbox-probe-http-parser-2'
+    metrics_path: /probe
+    params:
+      module: [http_parsing]
+    static_configs:
+      - targets:
+        - https://karneliuk.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.52.72:9118
+  - job_name: 'blackbox-probe-http-parser-3'
+    metrics_path: /probe
+    params:
+      module: [http_parsing]
+    static_configs:
+      - targets:
+        - https://karneliuk.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.53.72:9118
 ...

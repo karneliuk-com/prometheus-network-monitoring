@@ -1,0 +1,36 @@
+---
+version: "3.9"
+services:
+  blackbox_http:
+    image: "prom/blackbox-exporter:master"
+    ports:
+      - "9115:9115"
+    volumes:
+      - "./config:/config"
+    command:
+      - "--config.file=/config/blackbox.yaml"
+  blackbox_icmp:
+    image: "prom/blackbox-exporter:master"
+    ports:
+      - "9116:9115"
+    volumes:
+      - "./config:/config"
+    command:
+      - "--config.file=/config/blackbox.yaml"
+  blackbox_dns:
+    image: "prom/blackbox-exporter:master"
+    ports:
+      - "9117:9115"
+    volumes:
+      - "./config:/config"
+    command:
+      - "--config.file=/config/blackbox.yaml"
+  blackbox_http_parser:
+    image: "prom/blackbox-exporter:master"
+    ports:
+      - "9118:9115"
+    volumes:
+      - "./config:/config"
+    command:
+      - "--config.file=/config/blackbox.yaml"
+...

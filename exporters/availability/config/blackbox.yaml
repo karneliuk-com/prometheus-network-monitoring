@@ -1,0 +1,26 @@
+---
+modules:
+  http_2xx:
+    prober: http
+    timeout: 10s
+    http:
+  icmp_test:
+    prober: icmp
+    timeout: 10s
+    icmp:
+      preferred_ip_protocol: ip4
+      payload_size: 64
+  dns_test:
+    prober: dns
+    timeout: 10s
+    dns:
+      query_name: karneliuk.com
+      preferred_ip_protocol: ip4
+      ip_protocol_fallback: false
+  http_parsing:
+    prober: http
+    timeout: 10s
+    http:
+      fail_if_body_not_matches_regexp:
+        - ".*</html>"
+...
