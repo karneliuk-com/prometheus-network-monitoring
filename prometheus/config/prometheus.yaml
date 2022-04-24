@@ -49,11 +49,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [http_2xx]
-    static_configs:
-      - targets:
-        - https://karneliuk.com
-        - https://www.openstack.org
-        - https://github.com
+    file_sd_configs:
+      - files:
+        - targets/http.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -65,11 +63,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [http_2xx]
-    static_configs:
-      - targets:
-        - https://karneliuk.com
-        - https://www.openstack.org
-        - https://github.com
+    file_sd_configs:
+      - files:
+        - targets/http.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -77,31 +73,27 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: 192.168.52.72:9115
-  - job_name: 'blackbox-probe-http-2'
+  - job_name: 'blackbox-probe-http-3'
     metrics_path: /probe
     params:
       module: [http_2xx]
-    static_configs:
-      - targets:
-        - https://karneliuk.com
-        - https://www.openstack.org
-        - https://github.com
+    file_sd_configs:
+      - files:
+        - targets/http.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: 192.168.53.72:9115
+        replacement: 192.168.53.73:9115
   - job_name: 'blackbox-probe-icmp-1'
     metrics_path: /probe
     params:
       module: [icmp_test]
-    static_configs:
-      - targets:
-        - karneliuk.com
-        - www.openstack.org
-        - github.com
+    file_sd_configs:
+      - files:
+        - targets/icmp.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -113,11 +105,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [icmp_test]
-    static_configs:
-      - targets:
-        - karneliuk.com
-        - www.openstack.org
-        - github.com
+    file_sd_configs:
+      - files:
+        - targets/icmp.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -129,11 +119,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [icmp_test]
-    static_configs:
-      - targets:
-        - karneliuk.com
-        - www.openstack.org
-        - github.com
+    file_sd_configs:
+      - files:
+        - targets/icmp.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -145,10 +133,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [dns_test]
-    static_configs:
-      - targets:
-        - 8.8.8.8
-        - 9.9.9.9
+    file_sd_configs:
+      - files:
+        - targets/dns.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -160,10 +147,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [dns_test]
-    static_configs:
-      - targets:
-        - 8.8.8.8
-        - 9.9.9.9
+    file_sd_configs:
+      - files:
+        - targets/dns.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -175,10 +161,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [dns_test]
-    static_configs:
-      - targets:
-        - 8.8.8.8
-        - 9.9.9.9
+    file_sd_configs:
+      - files:
+        - targets/dns.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -190,9 +175,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [http_parsing]
-    static_configs:
-      - targets:
-        - https://karneliuk.com
+    file_sd_configs:
+      - files:
+        - targets/http.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -204,9 +189,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [http_parsing]
-    static_configs:
-      - targets:
-        - https://karneliuk.com
+    file_sd_configs:
+      - files:
+        - targets/http.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -218,9 +203,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [http_parsing]
-    static_configs:
-      - targets:
-        - https://karneliuk.com
+    file_sd_configs:
+      - files:
+        - targets/http.yaml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

@@ -1,0 +1,6 @@
+---
+- targets:
+  - karneliuk.com
+  - www.openstack.org
+  - github.com
+...
